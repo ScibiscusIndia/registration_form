@@ -1,6 +1,3 @@
-from enum import Flag
-from urllib import response
-from xmlrpc.client import boolean
 from flask import Flask
 from flask import render_template
 from flask import Flask,request
@@ -13,15 +10,15 @@ import sqlite3
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+# @app.route("/")
+# def hello_world():
+#     return "<p>Hello, World!</p>"
 
-@app.route("/success")
-def sucess_pay():
-    return render_template('success.html')
+# @app.route("/success")
+# def sucess_pay():
+#     return render_template('success.html')
 
-@app.route("/hero_two",methods = ["GET", "POST"])
+@app.route("/",methods = ["GET", "POST"])
 def world():
     #getting the data from html form
     if request.method == "POST":
@@ -39,8 +36,9 @@ def world():
         #converting dropdown into value
         internship_domain = ["Internship", "Frontend web development", "Backend web development",
         "Full stack web development","Software development","UI/UX design","Data Science","IOT","Digital Marketing",
-        "content Writing","Human Resource","Business development"]
-        month = ["Month","May","June","July"]
+        "content Writing","Human Resource","Business development","Law","Machine Learning","Cloud Computing","Cyber security","Artificial intelligence","Android App Development",
+        "Robotics","VLSI","Hybrid & Electric Vehicle","IC Engine","Auto CAD","Construction Planning","Nano science & nano technology","Genetic Engineering","Finance"]
+        month = ["Month","July","August","September"]
         gender = ["gender","Male","Female","others"]
 
         #replacing the value from original one
@@ -59,7 +57,7 @@ def world():
         conn.execute(ins)
         conn.commit()
         conn.close()
-        
+
 
         #executing and commiting the changes then closing the connection
         print("success")
@@ -67,6 +65,12 @@ def world():
             return render_template('success.html')
     return render_template('index.html')
 
+
+
+
+@app.route("/success")
+def sucess_pay():
+    return render_template('success.html')
 
 
 if __name__ == "__main__":
